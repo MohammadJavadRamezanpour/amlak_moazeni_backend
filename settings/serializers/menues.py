@@ -6,7 +6,7 @@ class MenuesSerializer(serializers.ModelSerializer):
     sub_menues = serializers.SerializerMethodField()
 
     def get_sub_menues(self, instance):
-        return MenuesSerializer(instance.sub_menues).data
+        return MenuesSerializer(instance.sub_menues, many=True).data
     
     class Meta:
         model = Menues
