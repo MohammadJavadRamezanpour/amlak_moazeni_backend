@@ -1,14 +1,7 @@
 from django.contrib import admin
 
-from store.models import File, Category, Product
+from store.models import Category, Product
 
-@admin.register(File)
-class FileAdmin(admin.ModelAdmin):
-    list_display = ['id', 'extension', 'mimetype', 'url']
-    readonly_fields = ('extension', 'mimetype')
-
-    def url(self, instance):
-        return instance.file.url
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

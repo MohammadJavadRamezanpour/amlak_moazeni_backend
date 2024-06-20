@@ -1,24 +1,33 @@
 from rest_framework import serializers
 
 from store.models import Product
-from store.serializers import FileSerializer
+from core.models import File
+from core.serializers import FileSerializer
 from store.serializers.category import CategorySerializer
 
 class ProductSerializer(serializers.ModelSerializer):
-    files = FileSerializer(many=True)
+    files = serializers.SerializerMethodField()
     category = CategorySerializer()
+
+    def get_files(self, instance):
+        files = File.objects.filter(content_type__model="product", object_id=instance.id)
+        return FileSerializer(files, many=True).data
 
     class Meta:
         model = Product
-        fields = ["price", "rental_price", "title", "text", "status", "category", "files"]
+        fields = ["id", "price", "rental_price", "title", "text", "status", "category", "files"]
         
 
 class CategoryProductSerializer(serializers.ModelSerializer):
     """
     this is going to be render in categories list
     """
-    files = FileSerializer(many=True)
+    files = serializers.SerializerMethodField()
+
+    def get_files(self, instance):
+        files = File.objects.filter(content_type__model="product", object_id=instance.id)
+        return FileSerializer(files, many=True).data
 
     class Meta:
         model = Product
-        fields = ["price", "rental_price", "title", "text", "status", "files"]
+        fields = ["id", "price", "rental_price", "title", "text", "status", "files"]

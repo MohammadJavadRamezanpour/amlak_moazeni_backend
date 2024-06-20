@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from store.models import File
+from core.models import File
 
 class FileSerializer(serializers.ModelSerializer):
     url = serializers.CharField(source="file.url")
