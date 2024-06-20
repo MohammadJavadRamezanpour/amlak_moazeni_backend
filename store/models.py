@@ -22,5 +22,5 @@ class Product(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, max_length=250)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="products")
     thumbnail = models.ImageField(upload_to="files", null=True, blank=True)
-
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     

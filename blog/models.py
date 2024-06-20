@@ -1,7 +1,8 @@
 from django.db import models
 
-# Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=250)
     text = models.TextField()
-    # files = 
+    thumbnail = models.ImageField(upload_to="files", null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    publish = models.BooleanField(default=True)
