@@ -1,2 +1,3 @@
 from .menues import MenuesSerializer
-from .settings import SettingsSerializer
+from .settings import BaseSettingsSerializer, SettingsSerializer, IntroSerializer
+from .sliders import SliderSerializer

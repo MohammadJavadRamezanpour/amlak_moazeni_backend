@@ -4,6 +4,9 @@ from django.db import models
 class Settings(models.Model):
     phone = models.CharField(max_length=15)
     address = models.TextField()
+    intro_image = models.ImageField(upload_to="files", null=True, blank=True)
+    intro_header = models.CharField(max_length=15, null=True, blank=True)
+    intro_text = models.TextField(null=True, blank=True)
 
 
 class Menues(models.Model):
@@ -18,3 +21,9 @@ class Menues(models.Model):
     @property
     def sub_menues(self):
         return Menues.objects.filter(parent=self, active=True)
+    
+
+class Slider(models.Model):
+    image = models.ImageField(upload_to="files")
+    title = models.TextField(null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
