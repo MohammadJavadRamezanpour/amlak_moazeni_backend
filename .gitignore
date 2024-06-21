@@ -53,3 +53,5 @@ docs/_build/
 
 files/
 dev.py
+liara.json
+*.pyc
