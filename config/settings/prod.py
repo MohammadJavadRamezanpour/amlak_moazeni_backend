@@ -19,7 +19,10 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ["DEBUG"]
 
-ALLOWED_HOSTS = ['amlakmoazeni.liara.run']
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOWED_ORIGINS = ALLOWED_HOSTS
+CORS_ALLOW_ALL_ORIGINS = DEBUG
 
 DATABASES = {
     'default': dj_database_url.config()

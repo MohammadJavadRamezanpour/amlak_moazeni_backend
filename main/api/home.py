@@ -15,10 +15,12 @@ def home_view(request):
     categories_queryset = Category.objects.all()
     posts_queryset = Post.objects.filter(publish=True).order_by('-id')[:6]
 
-    serialized_slider = SliderSerializer(slider_queryset).data
-    serialized_settings = IntroSerializer(settings_queryset).data
-    serialized_categories = CategorySerializer(categories_queryset, many=True).data
-    serialized_posts = PostSerializer(posts_queryset, many=True).data
+    context = {"request": request}
+
+    serialized_slider = SliderSerializer(slider_queryset, context=context).data
+    serialized_settings = IntroSerializer(settings_queryset, context=context).data
+    serialized_categories = CategorySerializer(categories_queryset, many=True, context=context).data
+    serialized_posts = PostSerializer(posts_queryset, many=True, context=context).data
 
     response = {
         "header": serialized_slider,

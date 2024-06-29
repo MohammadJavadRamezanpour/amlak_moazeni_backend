@@ -9,10 +9,16 @@ class CategorySerializer(serializers.ModelSerializer):
     def get_products(self, instance):
         from store.serializers.product import CategoryProductSerializer
         products = Product.objects.filter(category=instance)
-        return CategoryProductSerializer(products, many=True).data
+        return CategoryProductSerializer(products, many=True, context=self.context).data
+
 
     def get_image(self, instance):
-        return instance.image.url if instance.image else None
+        request = self.context.get('request')
+        if instance.image is None:
+            return None
+        if request is not None:
+            return request.build_absolute_uri(instance.image.url)
+        return instance.image.url
     
     class Meta:
         model = Category
