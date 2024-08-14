@@ -7,7 +7,7 @@ class Category(models.Model):
 
     @property
     def count(self):
-        self.products.filter(active=True).count()
+        self.products.all().count()
     
 
 class Product(models.Model):
@@ -22,5 +22,6 @@ class Product(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, max_length=250)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="products")
     thumbnail = models.ImageField(upload_to="files", null=True, blank=True)
+    tags = models.ManyToManyField("core.Tag")
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     
