@@ -2,6 +2,7 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=250)
+    desc = models.TextField()
     text = models.TextField()
     thumbnail = models.ImageField(upload_to="files", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
