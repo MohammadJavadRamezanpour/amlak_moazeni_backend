@@ -22,8 +22,14 @@ class Menues(models.Model):
     def sub_menues(self):
         return Menues.objects.filter(parent=self, active=True)
     
+    def __str__(self):
+        return self.text
+    
 
 class Slider(models.Model):
     image = models.ImageField(upload_to="files")
     title = models.TextField(null=True, blank=True)
     text = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.text
