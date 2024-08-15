@@ -6,7 +6,7 @@ from settings.models import Slider, Settings
 from store.models import Category
 from store.serializers import CategorySerializer
 from blog.models import Post
-from blog.serialzers import PostSerializer
+from blog.serializers import PostSerializer
 
 @api_view(['GET'])
 def home_view(request):

@@ -33,6 +33,9 @@ INSTALLED_APPS = [
 
     # third party
     'rest_framework',
+    'django_filters',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # my apps
     'user',
@@ -42,6 +45,18 @@ INSTALLED_APPS = [
     'blog',
     'core',
 ]
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'width': '100%',
+        'height': 300,
+        'extraAllowedContent': 'img[*](*){*}[*]',
+    },
+}
+
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

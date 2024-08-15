@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import File
+from core.models import File, Tag
 
 @admin.register(File)
 class FileAdmin(admin.ModelAdmin):
@@ -8,3 +8,7 @@ class FileAdmin(admin.ModelAdmin):
 
     def url(self, instance):
         return instance.file.url
+    
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['text']
