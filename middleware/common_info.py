@@ -22,6 +22,5 @@ class CommonInfoMiddleware(MiddlewareMixin):
                     "base": base
                 }
             else:
-                print("================= mid")
                 response.data["base"] = base
         return response

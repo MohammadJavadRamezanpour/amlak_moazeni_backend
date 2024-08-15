@@ -19,6 +19,6 @@ class PostViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["list", "create"]:
             return PostListSerializer
-        elif self.action == "retrieve":
+        elif self.action in ["retrieve", "update", "partial_update"]:
             return PostSerializer
         return super().get_serializer_class()
