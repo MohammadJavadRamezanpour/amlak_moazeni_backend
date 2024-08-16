@@ -18,6 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -31,7 +33,6 @@ INSTALLED_APPS = [
 
     # third party
     'rest_framework',
-    'corsheaders',
 
     # my apps
     'user',
@@ -41,6 +42,18 @@ INSTALLED_APPS = [
     'blog',
     'core',
 ]
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'width': '100%',
+        'height': 300,
+        'extraAllowedContent': 'img[*](*){*}[*]',
+    },
+}
+
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

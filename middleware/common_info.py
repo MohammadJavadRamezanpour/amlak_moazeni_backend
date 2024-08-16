@@ -4,6 +4,8 @@ from settings.serializers import MenuesSerializer, BaseSettingsSerializer
 from settings.models import Settings, Menues
 
 
+
+
 class CommonInfoMiddleware(MiddlewareMixin):
     def process_template_response(self, request, response):
         base = {
@@ -13,5 +15,12 @@ class CommonInfoMiddleware(MiddlewareMixin):
             ).data,
         }
         if hasattr(response, "data"):
-            response.data["base"] = base
+            from rest_framework.utils.serializer_helpers import ReturnList
+            if type(response.data) == ReturnList:
+                response.data = {
+                    "result": response.data,
+                    "base": base
+                }
+            else:
+                response.data["base"] = base
         return response

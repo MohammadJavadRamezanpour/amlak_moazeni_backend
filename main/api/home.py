@@ -6,7 +6,7 @@ from settings.models import Slider, Settings
 from store.models import Category
 from store.serializers import CategorySerializer
 from blog.models import Post
-from blog.serialzers import PostSerializer
+from blog.serializers import PostListSerializer
 
 @api_view(['GET'])
 def home_view(request):
@@ -20,7 +20,7 @@ def home_view(request):
     serialized_slider = SliderSerializer(slider_queryset, context=context).data
     serialized_settings = IntroSerializer(settings_queryset, context=context).data
     serialized_categories = CategorySerializer(categories_queryset, many=True, context=context).data
-    serialized_posts = PostSerializer(posts_queryset, many=True, context=context).data
+    serialized_posts = PostListSerializer(posts_queryset, many=True, context=context).data
 
     response = {
         "header": serialized_slider,

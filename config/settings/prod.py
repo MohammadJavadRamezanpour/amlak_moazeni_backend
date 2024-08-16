@@ -17,12 +17,13 @@ from .common import *
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ["DEBUG"]
+DEBUG = os.environ.get("DEBUG", False)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS += ["amlakmoazeni.liara.run"]
 
 CORS_ALLOWED_ORIGINS = ALLOWED_HOSTS
 CORS_ALLOW_ALL_ORIGINS = DEBUG
+
 
 DATABASES = {
     'default': dj_database_url.config()

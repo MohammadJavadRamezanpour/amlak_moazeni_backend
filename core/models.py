@@ -35,4 +35,9 @@ class File(models.Model):
 
     def __str__(self):
         return self.file.name
-  
+          
+class Tag(models.Model):
+    text = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.text)
