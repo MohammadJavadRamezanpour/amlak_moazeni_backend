@@ -22,7 +22,3 @@ class Post(models.Model):
     tags = models.ManyToManyField("core.Tag")
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     publish = models.BooleanField(default=True)
-
-    @property
-    def tags_list(self):
-        return [tag.text for tag in self.tags.all()]
