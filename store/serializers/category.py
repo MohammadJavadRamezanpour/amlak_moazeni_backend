@@ -2,6 +2,21 @@ from rest_framework import serializers
 
 from store.models import Category, Product
 
+class CategorySerializerWithoutProducts(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, instance):
+        request = self.context.get('request')
+        if instance.image is None:
+            return None
+        if request is not None:
+            return request.build_absolute_uri(instance.image.url)
+        return instance.image.url
+    
+    class Meta:
+        model = Category
+        fields = ["id", "image", "title", "text"]
+
 class CategorySerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
     products = serializers.SerializerMethodField()
@@ -22,4 +37,4 @@ class CategorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Category
-        fields = ["image", "title", "text", "products"]
+        fields = ["id", "image", "title", "text", "products"]
