@@ -18,8 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["127.0.0.1:8000", "loclhost"]
 
 # Application definition
 
@@ -33,6 +32,10 @@ INSTALLED_APPS = [
 
     # third party
     'rest_framework',
+    'corsheaders',
+    'django_filters',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # my apps
     'user',
