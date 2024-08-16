@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from blog.api import PostViewSet, CategoryViewSet
 
 router = DefaultRouter()
-router.register('posts', PostViewSet)
+router.register('post', PostViewSet)
 router.register('category', CategoryViewSet)
 
 urlpatterns = [

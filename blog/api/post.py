@@ -7,7 +7,7 @@ from ..serializers import PostSerializer, PostListSerializer
 from ..filters import PostFilter
 from core.misc import CustomPaginationClass
 
-class PostViewSet(viewsets.ModelViewSet):
+class PostViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Post.objects.filter(publish=True).order_by('-created_at')
     pagination_class = CustomPaginationClass      
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
