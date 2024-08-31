@@ -17,11 +17,11 @@ from .common import *
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if os.environ["DEBUG"].strip() == "true" else False
+DEBUG = os.environ["DEBUG"].strip() == "true"
 
-ALLOWED_HOSTS += ["amlakmoazeni.liara.run"]
+ALLOWED_HOSTS = ["amlakmoazeni2.liara.run", "amlakmoazenifront.liara.run"]
 
-CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:8000", "http://localhost:8000", "https://amlakmoazeni.liara.run"]
+CORS_ALLOWED_ORIGINS = ["https://amlakmoazeni2.liara.run", "https://amlakmoazenifront.liara.run"]
 CORS_ALLOW_ALL_ORIGINS = DEBUG
 
 DATABASES = {

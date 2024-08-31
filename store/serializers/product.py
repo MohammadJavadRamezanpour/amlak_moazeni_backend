@@ -1,3 +1,5 @@
+import jdatetime
+
 from rest_framework import serializers
 
 from store.models import Product, ProductProperty
@@ -14,6 +16,12 @@ class ProductSerializer(serializers.ModelSerializer):
     status = serializers.SerializerMethodField()
     properties = serializers.SerializerMethodField()
     tags = TagSerializer(many=True)
+    created_at = serializers.SerializerMethodField()
+    
+    def get_created_at(self, instance):
+        created_at_gregorian = instance.created_at
+        created_at_jalali = jdatetime.datetime.fromgregorian(datetime=created_at_gregorian)
+        return created_at_jalali.strftime('%Y/%m/%d')
 
     def get_properties(self, obj):
         product_properties = ProductProperty.objects.filter(product=obj)
@@ -58,6 +66,12 @@ class ProductListSerializer(serializers.ModelSerializer):
     thumbnail = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
     properties = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
+    
+    def get_created_at(self, instance):
+        created_at_gregorian = instance.created_at
+        created_at_jalali = jdatetime.datetime.fromgregorian(datetime=created_at_gregorian)
+        return created_at_jalali.strftime('%Y/%m/%d')
 
     def get_properties(self, obj):
         product_properties = ProductProperty.objects.filter(product=obj)
@@ -98,6 +112,12 @@ class CategoryProductSerializer(serializers.ModelSerializer):
     thumbnail = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
     properties = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
+    
+    def get_created_at(self, instance):
+        created_at_gregorian = instance.created_at
+        created_at_jalali = jdatetime.datetime.fromgregorian(datetime=created_at_gregorian)
+        return created_at_jalali.strftime('%Y/%m/%d')
 
     def get_properties(self, obj):
         product_properties = ProductProperty.objects.filter(product=obj)
